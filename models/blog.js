@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
-const Schema = mogoose.Schema;
+const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema ({
     name: {type: String, required: true, max:100},
-    author: {type: Schema.Types.UserId, ref: 'User', required: true},
+    author: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     created: {type: Date, required: true},
-    updated: {type: Date, required: true},
-    content: {type: Blob, required: true}
+    updated: {type: Date},
+    content: {type: String, required: true},
+    published: {type: Boolean, required: true}
 })
 
 // Virtual for blog url

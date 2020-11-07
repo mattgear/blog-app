@@ -2,14 +2,16 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
-const signup = async (req, res) => {
+const register = async (req, res) => {
     const { name, email, password } = req.body;
+
+    console.log(req.body);
 
     try {
         let user = await User.findOne({ email });
 
         if (!user) {
-            let newUser = User({ name, email, password });
+            let newUser = new User({ name, email, password });
 
             await newUser.save();
 
@@ -40,7 +42,7 @@ const login = async (req, res) => {
                 expiresIn: "24h"
             });
 
-            return res.status(200).json({msg: "User successfully logged in"});
+            return res.status(200).json({msg: "User successfully logged in", token});
         }
 
         return res.status(403).json({errors: ["Invalid Password"]});
@@ -74,6 +76,6 @@ const me = async (req, res) => {
 
 module.exports = {
     login,
-    signup,
+    register,
     me
 }

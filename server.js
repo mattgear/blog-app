@@ -34,7 +34,7 @@ app.use('/api/v1', api);
 
 const authRoute = require('./routes/auth');
 app.use(express.json());
-app.use("/api/auth/", authRoute);
+app.use("/auth/", authRoute);
 
 // Middleware to serve compiled React files
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {

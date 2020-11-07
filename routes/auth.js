@@ -1,13 +1,13 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 
-const { login, signup, me } = require("../controllers/AuthController");
+const { login, register, me } = require("../controllers/AuthController");
 
 const router = express.Router();
 
 // Sign Up
 router.post(
-    "/sign-up",
+    "/register",
     [
         check("name")
             .isLength({min: 3})
@@ -47,12 +47,12 @@ router.post(
         next();
     },
 
-    signup
+    register
 );
 
 // Login
 router.post(
-    "login",
+    "/login",
     [
         check("email")
             .isEmail()
